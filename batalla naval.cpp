@@ -1,11 +1,14 @@
 /*Juego de batalla naval contra la computadora.
 Puntos a tomar en cuenta:
 1-.Existirán 2 tableros, uno para la computadora y otro para el usuario
-2-.Los tableros serán de 10x10
-3-.La computadora jugará con números aleatorios definidos por la misma
+2-.Los tableros serán de 10x10 (completado)
+3-.La computadora jugará con números aleatorios definidos por la misma (completado)
 4-.La computadora acomodará barcos aleatorios
-5-.El usuario acomodará sus barcos
-6-.Se limitará el tamaño de los barcos de dimension 2x1*/
+5-.El usuario acomodará sus barcos (completado)
+6-.Se limitará el tamaño de los barcos de dimension 2x1 (completado para el usuario, falta para la computadora)
+7-.Se jugará por turnos, si uno de los dos atina a una parte de un barco éste sigue tirando
+8-.Cada vez que el usuario o la computadora tire se marcará en el tablero una X
+9-.Ganará el primero que destruya los 10 barcos*/
 
 #include<stdio.h>
 #include<stdlib.h>
