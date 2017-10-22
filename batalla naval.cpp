@@ -29,7 +29,7 @@ int main()
 	printf("\t\tBienvenido al juego de batalla naval\n");
 	printf("Para empezar debes posicionar diez barcos de dimensi%cn 2x1 en el tablero\n",162);
 	system("pause");
-//	posicion();
+	posicion();
 	dado();
 	return 0;
 	
