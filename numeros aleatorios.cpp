@@ -4,10 +4,10 @@
 #include<stdlib.h>
 #include<time.h>
 
-#define falso 0
+#define falso 0 
 #define verdadero 1
 
-int verifica(int aleatorio[][10],int col, int fil, int num)
+int verifica(int aleatorio[][10],int col, int fil, int num) //función para evitar que se repita el valor en la matriz
 {
 	for(col=0;col<10;col++)
 	{
@@ -31,10 +31,10 @@ int main()
 	{
 		for(fil=0;fil<10;fil++)
 		{
-			num =1+ rand()%100;
+			num = 1 + rand()%100;
 			while(verifica(aleatorio,10,10,num)==falso)
 			{
-				num =1+ rand()%100;
+				num = 1 + rand()%100;
 			}
 			aleatorio[col][fil]=num;
 		}
