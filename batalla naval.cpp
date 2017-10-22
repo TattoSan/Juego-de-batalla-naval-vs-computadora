@@ -1,11 +1,11 @@
 /*Juego de batalla naval contra la computadora.
 Puntos a tomar en cuenta:
-1-.Existir·n 2 tableros, uno para la computadora y otro para el usuario
-2-.Los tableros ser·n de 10x10
-3-.La computadora jugar· con n˙meros aleatorios definidos por la misma
-4-.La computadora acomodar· barcos aleatorios
-5-.El usuario acomodar· sus barcos
-6-.Se limitar· el tamaÒo de los barcos de dimension 2x1*/
+1-.Existir√°n 2 tableros, uno para la computadora y otro para el usuario
+2-.Los tableros ser√°n de 10x10
+3-.La computadora jugar√° con n√∫meros aleatorios definidos por la misma
+4-.La computadora acomodar√° barcos aleatorios
+5-.El usuario acomodar√° sus barcos
+6-.Se limitar√° el tama√±o de los barcos de dimension 2x1*/
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -34,7 +34,7 @@ int main()
 	return 0;
 	
 }
-void inimatriz(int matriz[][10])
+void inimatriz(int matriz[][10]) //inicializa todos los valores de la matriz del usuario en 0
 {
 	int i,j;
 	for(i=0;i<10;i++)
@@ -46,7 +46,7 @@ void inimatriz(int matriz[][10])
 	}
 	
 }
-void matriz_aleatoria() //Empieza la asignaciÛn de la matriz aleatoria
+void matriz_aleatoria() //Empieza la asignaci√≥n de la matriz aleatoria para determinar los tiros de la computadora
 {
 	int aleatorio[10][10];
 	int col , fil , num,contador=0;
@@ -66,7 +66,7 @@ void matriz_aleatoria() //Empieza la asignaciÛn de la matriz aleatoria
 
 }
 
-int verifica( int aleatorio[][10] , int col , int fil , int num ) //funciÛn para evitar que se repita el valor en la matriz
+int verifica( int aleatorio[][10] , int col , int fil , int num ) //funci√≥n para evitar que se repita el valor en la matriz de los tiros de la computadora
 {
 
 	for( fil = 0 ; fil < 10 ; fil++ )
@@ -82,7 +82,7 @@ int verifica( int aleatorio[][10] , int col , int fil , int num ) //funciÛn para
 	return verdadero;
 }
 
-int dado()
+int dado() //Funci√≥n para ver quien tira primero, si el usuario o la computadora
 {
 	int r,op;
 	srand(time(NULL));
@@ -94,24 +94,24 @@ int dado()
 					case 1:
 						if(r%2==1)
 						{
-							printf("\t\t°Tu tiras primero!\n");
+							printf("\t\t¬°Tu tiras primero!\n");
 							return verdadero;
 						}
 						else
 						{
-							printf("\t\t°Tira primero la computadora!\n");
+							printf("\t\t¬°Tira primero la computadora!\n");
 							return falso;
 						}
 						break;
 					case 2:
 						if(r%2==0)
 						{
-							printf("\t\t°Tu tiras primero!\n");
+							printf("\t\t¬°Tu tiras primero!\n");
 							return verdadero;
 						}
 						else
 						{
-							printf("\t\t°Tira primero la computadora!\n");
+							printf("\t\t¬°Tira primero la computadora!\n");
 							return falso;
 						}
 						break;
@@ -121,7 +121,7 @@ int dado()
 				}
 
 }
-void tablero_usuario(int matriz[][10])
+void tablero_usuario(int matriz[][10]) //imprime la matriz del usuario en 3 casos, falso=-,verdadero=O y muerto=X
 {
 		
 	system("cls");
@@ -148,7 +148,7 @@ void tablero_usuario(int matriz[][10])
 		}
 	}
 }
-void posicion()
+void posicion()//Aqui ponemos los barcos en el mapa
 {
 	
 	int matriz[10][10],i,j,k,valor,colusu,filusu;
@@ -164,7 +164,8 @@ void posicion()
 		tablero_usuario(matriz);
 	}
 }
-int matrizevaluada(int matriz[][10],int filusu,int colusu)
+int matrizevaluada(int matriz[][10],int filusu,int colusu)/*los barcos son de dimensi√≥n 2x1 y necesita ser colocada la otra parte del mismo
+donde el usuario guste, siempre y cuando concuerde con el barco, que est√© en posici√≥n vertical u horizontal hacia la izquierda o derecha, arriba o abajo*/
 {
 		if(filusu==1 && colusu==1)
 		{
