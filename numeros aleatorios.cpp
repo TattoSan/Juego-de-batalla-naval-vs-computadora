@@ -1,4 +1,4 @@
-/*Numeros aleatorios sin repetorir*/
+/*Numeros aleatorios sin repetir para dar los turnos a la computadora en el juego de batalla naval*/
 
 #include<stdio.h>
 #include<stdlib.h>
