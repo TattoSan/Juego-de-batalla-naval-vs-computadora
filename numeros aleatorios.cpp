@@ -24,7 +24,7 @@ int verifica(int aleatorio[][10],int col, int fil, int num)
 int main()
 {
 	
-	int aleatorio[10][10],colale[10],filale[10];
+	int aleatorio[10][10];
 	int col,fil,num;
 	srand(time(NULL));
 	for(col=0;col<10;col++)
