@@ -1,4 +1,6 @@
-/*Numeros aleatorios sin repetir para dar los turnos a la computadora en el juego de batalla naval*/
+/*	Numeros aleatorios sin repetir para dar los turnos a la computadora en el juego de batalla naval.
+	Este programa da 100 turnos diferentes a la computadora con el fin de cubrir todas las posiciones 
+	disponibles en el tablero y sin repetir.	*/
 
 #include<stdio.h>
 #include<stdlib.h>
