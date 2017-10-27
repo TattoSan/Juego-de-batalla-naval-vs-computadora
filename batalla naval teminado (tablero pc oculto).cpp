@@ -153,7 +153,7 @@ int dado() //Función para ver quien tira primero, si el usuario o la computador
 void tablero_usuario(int matriz[][10]) //imprime la matriz del usuario en 3 casos, falso=-,verdadero=O y muerto=X
 {
 	int i,j;
-	printf("TABLERO USUARIO\nCOLUMNA\t1\t2\t3\t4\t5\t6\t7\t8\t9\t10\nFILA");
+	printf("TABLERO USUARIO\n 1\t2\t3\t4\t5\t6\t7\t8\t9\t10\n ");
 	for(i=0;i<10;i++)
 	{
 	printf("\n%d",i+1);
@@ -162,13 +162,13 @@ void tablero_usuario(int matriz[][10]) //imprime la matriz del usuario en 3 caso
 			switch(matriz[i][j])
 			{
 				case falso:
-					printf("\t-");
+					printf("-\t");
 					break;
 				case verdadero:		
-					printf("\tO");
+					printf("O\t");
 					break;
 				case muerto:
-					printf("\tX");
+					printf("X\t");
 		
 			}
 		}
@@ -346,22 +346,22 @@ int contador=0;
 void tablero_pc(int matrizpc[][10])
 {
 	int i,j;
-	printf("TABLERO PC\nCOLUMNA\t1\t2\t3\t4\t5\t6\t7\t8\t9\t10\nFILA");
+	printf("TABLERO PC\n  1\t2\t3\t4\t5\t6\t7\t8\t9\t10\n ");
 	for(i=0;i<10;i++)
 	{
-	printf("\n%d",i+1);
+	printf("\n% d",i+1);
 		for(j=0;j<10;j++)
 		{
 			switch(matrizpc[i][j])
 			{
 				case falso:
-					printf("\t-");
+					printf("-\t");
 					break;
 				case verdadero:		
-					printf("\t-");
+					printf("-\t");
 					break;
 				case muerto:
-					printf("\tX");
+					printf("X\t");
 					break;
 		
 			}
