@@ -1,14 +1,14 @@
 /*Juego de batalla naval contra la computadora.
 Puntos a tomar en cuenta:
-1-.Existir·n 2 tableros, uno para la computadora y otro para el usuario (completado)
-2-.Los tableros ser·n de 10x10 (completado)
-3-.La computadora jugar· con n˙meros aleatorios definidos por la misma (completado)
-4-.La computadora acomodar· barcos aleatorios los cuales estar·n definidos en los ultimos 20 tiros de la computadora dando fin al juego (completado)
-5-.El usuario acomodar· sus barcos (completado)
-6-.Se limitar· el tamaÒo de los barcos de dimension 1x1 (completado)
-7-.Se jugar· por turnos, si uno de los dos atina a una parte de un barco Èste sigue tirando (completado)
-8-.Cada vez que el usuario o la computadora tire se marcar· en el tablero una X (completado)
-9-.Ganar· el primero que destruya los 20 barcos (completado) */
+1-.Existir√°n 2 tableros, uno para la computadora y otro para el usuario (completado)
+2-.Los tableros ser√°n de 10x10 (completado)
+3-.La computadora jugar√° con n√∫meros aleatorios definidos por la misma (completado)
+4-.La computadora acomodar√° barcos aleatorios los cuales estar√°n definidos en los ultimos 20 tiros de la computadora dando fin al juego (completado)
+5-.El usuario acomodar√° sus barcos (completado)
+6-.Se limitar√° el tama√±o de los barcos de dimension 1x1 (completado)
+7-.Se jugar√° por turnos, si uno de los dos atina a una parte de un barco √©ste sigue tirando (completado)
+8-.Cada vez que el usuario o la computadora tire se marcar√° en el tablero una X (completado)
+9-.Ganar√° el primero que destruya los 20 barcos (completado) */
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -71,7 +71,7 @@ void inimatriz(int matriz[][10]) //inicializa todos los valores de la matriz del
 	
 }
 
-void matriz_aleatoria(int aleatorio[][10]) //Empieza la asignaciÛn de la matriz aleatoria para determinar los tiros de la computadora
+void matriz_aleatoria(int aleatorio[][10]) //Empieza la asignaci√≥n de la matriz aleatoria para determinar los tiros de la computadora
 {
 	
 	int col , fil , num,contador=0;
@@ -91,7 +91,7 @@ void matriz_aleatoria(int aleatorio[][10]) //Empieza la asignaciÛn de la matriz 
 	
 }
 
-int verifica( int aleatorio[][10] , int col , int fil , int num ) //funciÛn para evitar que se repita el valor en la matriz de los tiros de la computadora
+int verifica( int aleatorio[][10] , int col , int fil , int num ) //funci√≥n para evitar que se repita el valor en la matriz de los tiros de la computadora
 {
 	for( fil = 0 ; fil < 10 ; fil++ )
 	{
@@ -106,12 +106,12 @@ int verifica( int aleatorio[][10] , int col , int fil , int num ) //funciÛn para
 	return verdadero;
 }
 
-int dado() //FunciÛn para ver quien tira primero, si el usuario o la computadora
+int dado() //Funci√≥n para ver quien tira primero, si el usuario o la computadora
 {
 	int r,op;
 	srand(time(NULL));
 	r=1+rand()%(6-1);
-	printf("\n\n\t\tPara tirar primero elige si tu numero es par o impar (1-PAR/2-IMPAR):");
+	printf("\n\n\t\tPara tirar primero elige si el numero del dado a tirar es par o impar (1-PAR/2-IMPAR):");
 	scanf("%d",&op);
 	printf("\n\t\t\tEl dado cay%c: %d",162,r);
 				switch(op)
@@ -119,13 +119,13 @@ int dado() //FunciÛn para ver quien tira primero, si el usuario o la computadora
 					case 1:
 						if(r%2==0)
 						{
-							printf("\t°Tu tiras primero!\n");
+							printf("\t¬°Tu tiras primero!\n");
 							system("pause");
 							return verdadero;
 						}
 						else
 						{
-							printf("\t°Tira primero la computadora!\n");
+							printf("\t¬°Tira primero la computadora!\n");
 							system("pause");
 							return falso;
 						}
@@ -133,13 +133,13 @@ int dado() //FunciÛn para ver quien tira primero, si el usuario o la computadora
 					case 2:
 						if(r%2==1)
 						{
-							printf("\t°Tu tiras primero!\n");
+							printf("\t¬°Tu tiras primero!\n");
 							system("pause");
 							return verdadero;
 						}
 						else
 						{
-							printf("\t°Tira primero la computadora!\n");
+							printf("\t¬°Tira primero la computadora!\n");
 							system("pause");
 							return falso;
 						}
@@ -243,6 +243,8 @@ int contador=0;
 		system("cls");	
 		tablero_usuario(matriz);
 		printf("\n---------------------------------------------------------------------------------\n");
+		printf("\n-------------------------------USUARIO:%d||PC:%d---------------------------------\n",contadorusuario,contadorpc);
+		printf("\n---------------------------------------------------------------------------------\n");
 		tablero_pc(matrizpc);
 		printf("\nTira la posici%cn (X,Y):",162);
 		scanf("%d,%d",&col,&fil);
@@ -283,6 +285,8 @@ int contador=0;
 	{
 		system("cls");
 		tablero_usuario(matriz);
+		printf("\n---------------------------------------------------------------------------------\n");
+		printf("\n-------------------------------USUARIO:%d||PC:%d---------------------------------\n",contadorusuario,contadorpc);
 		printf("\n---------------------------------------------------------------------------------\n");
 		tablero_pc(matrizpc);
 		while(ladodado==falso && contadorpc!=20) //opcion para poner los turnos y colocar los barcos aleatorios en la pc
