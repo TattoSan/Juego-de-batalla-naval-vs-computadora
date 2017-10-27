@@ -3,12 +3,12 @@ Puntos a tomar en cuenta:
 1-.Existirán 2 tableros, uno para la computadora y otro para el usuario
 2-.Los tableros serán de 10x10 (completado)
 3-.La computadora jugará con números aleatorios definidos por la misma (completado)
-4-.La computadora acomodará barcos aleatorios
+4-.La computadora acomodará barcos aleatorios los cuales estarán definidos en los ultimos 20 tiros de la computadora dando fin al juego.
 5-.El usuario acomodará sus barcos (completado)
-6-.Se limitará el tamaño de los barcos de dimension 2x1 (completado para el usuario, falta para la computadora)
+6-.Se limitará el tamaño de los barcos de dimension 1x1 (
 7-.Se jugará por turnos, si uno de los dos atina a una parte de un barco éste sigue tirando
 8-.Cada vez que el usuario o la computadora tire se marcará en el tablero una X
-9-.Ganará el primero que destruya los 10 barcos*/
+9-.Ganará el primero que destruya los 20 barcos*/
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -17,23 +17,36 @@ Puntos a tomar en cuenta:
 #define falso 0
 #define verdadero 1
 #define muerto 2
+
 void inimatriz(int matriz[][10]);
-void matriz_aleatoria();
+void matriz_aleatoria(int aleatorio[][10]);
 int verifica( int aleatorio[][10] , int col , int fil , int num );
 int dado();
-void posicion();
+void posicion(int matriz[][10]);
 void tablero_usuario(int matriz[][10]);
-int matrizevaluada(int matriz[][10],int filusu,int colusu);
+void escribir(int matriz[][10], int i);
+void juego(int matriz[][10],int aleatorio[][10],int matrizpc[][10],int tira);
 
 int main()
 {
-	matriz_aleatoria();
+	int matriz[10][10];
+	int matrizpc[10][10];
+	int aleatorio[10][10];
+	int tira;
+	
+	int ladodado;
+	inimatriz(matriz); //argumento que inicializa todos los valores de la matriz del usuario en 0(falso)
+	inimatriz(matrizpc); //argumento que inicializa todos los valores de la matriz de la pc en 0(falso)
+
 
 	printf("\t\tBienvenido al juego de batalla naval\n");
-	printf("Para empezar debes posicionar diez barcos de dimensi%cn 2x1 en el tablero\n",162);
+	printf("Para empezar debes posicionar veinte barcos de dimensi%cn 1x1 en el tablero\n",162);
 	system("pause");
-	posicion();
-	dado();
+	 
+	posicion(matriz);
+	ladodado = dado();
+	matriz_aleatoria(aleatorio);
+	
 	return 0;
 	
 }
@@ -49,9 +62,9 @@ void inimatriz(int matriz[][10]) //inicializa todos los valores de la matriz del
 	}
 	
 }
-void matriz_aleatoria() //Empieza la asignación de la matriz aleatoria para determinar los tiros de la computadora
+void matriz_aleatoria(int aleatorio[][10]) //Empieza la asignación de la matriz aleatoria para determinar los tiros de la computadora
 {
-	int aleatorio[10][10];
+	
 	int col , fil , num,contador=0;
 	srand(time(NULL));
 	for( fil = 0 ; fil < 10 ; fil ++)
@@ -66,7 +79,7 @@ void matriz_aleatoria() //Empieza la asignación de la matriz aleatoria para det
 			aleatorio[col][fil] = num;
 		}
 	}
-
+	
 }
 
 int verifica( int aleatorio[][10] , int col , int fil , int num ) //función para evitar que se repita el valor en la matriz de los tiros de la computadora
@@ -92,10 +105,11 @@ int dado() //Función para ver quien tira primero, si el usuario o la computador
 	r=1+rand()%(6-1);
 	printf("\n\n\t\tPara tirar primero elige si tu numero es par o impar (1-PAR/2-IMPAR):");
 	scanf("%d",&op);
+	printf("\n\t\t\tEl dado cay%c %d\n",162,r);
 				switch(op)
 				{
 					case 1:
-						if(r%2==1)
+						if(r%2==0)
 						{
 							printf("\t\t¡Tu tiras primero!\n");
 							return verdadero;
@@ -107,7 +121,7 @@ int dado() //Función para ver quien tira primero, si el usuario o la computador
 						}
 						break;
 					case 2:
-						if(r%2==0)
+						if(r%2==1)
 						{
 							printf("\t\t¡Tu tiras primero!\n");
 							return verdadero;
@@ -151,95 +165,32 @@ void tablero_usuario(int matriz[][10]) //imprime la matriz del usuario en 3 caso
 		}
 	}
 }
-void posicion()//Aqui ponemos los barcos en el mapa
+void posicion(int matriz[][10])//Aqui ponemos los barcos en el mapa
 {
 	
-	int matriz[10][10],i,j,k,valor,colusu,filusu;
-	inimatriz(matriz);
+	int i;
+	
 	tablero_usuario(matriz);
-	for(i=0;i<10;i++)
+	for(i=1;i<=20;i++)
 	{
 		
-		printf("\nBarco n%cmero [%d] (COLUMNA,FILA):",163,i+1);
-		scanf("%d,%d",&colusu,&filusu);
-		matriz[filusu-1][colusu-1]=verdadero;
-		matrizevaluada(matriz,filusu,colusu);
-		tablero_usuario(matriz);
+		printf("\nBarco n%cmero [%d] (COLUMNA,FILA):",163,i);
+		escribir(matriz,i);
 	}
 }
-int matrizevaluada(int matriz[][10],int filusu,int colusu)/*los barcos son de dimensión 2x1 y necesita ser colocada la otra parte del mismo
-donde el usuario guste, siempre y cuando concuerde con el barco, que esté en posición vertical u horizontal hacia la izquierda o derecha, arriba o abajo*/
+void escribir(int matriz[][10], int i)
 {
-		if(filusu==1 && colusu==1)
+	int colusu,filusu;
+	scanf("%d,%d",&colusu,&filusu);
+		if(matriz[colusu-1][filusu-1]==verdadero)
 		{
-			printf("Puede elegir [%d,%d] o [%d,%d] para la otra parte del barco:",colusu+1,filusu,colusu,filusu+1);//
-			scanf("%d,%d",&colusu,&filusu);
-			matriz[filusu-1][colusu-1]=verdadero;
-			return 0;
+		
+			printf("\n\nElige otra posici%cn (COLUMNA,FILA):",162);
+			escribir(matriz,i);
 		}
-		if(filusu==1 && (colusu==2 || colusu==3 || colusu==4 || colusu==5 || colusu==6 || colusu==7 || colusu==8 || colusu==9))	
+		else
 		{
-				
-			printf("Puede elegir [%d,%d] o [%d,%d] o [%d,%d] para la otra parte del barco:",colusu+1,filusu,colusu-1,filusu,colusu,filusu+1);//
-			scanf("%d,%d",&colusu,&filusu);
 			matriz[filusu-1][colusu-1]=verdadero;
-			return 0;
-		}
-		if(filusu==1 && colusu==10)
-		{
-			printf("Puede elegir [%d,%d] o [%d,%d] para la otra parte del barco:",colusu-1,filusu,colusu,filusu+1);//
-			scanf("%d,%d",&colusu,&filusu);
-			matriz[filusu-1][colusu-1]=verdadero;
-			return 0;
-		}
-		if((filusu==2 || filusu==3 || filusu==4 || filusu==5 || filusu==6 || filusu==7 || filusu==8 || filusu==9) && colusu==1)
-		{
-				
-			printf("Puede elegir [%d,%d] o [%d,%d] o [%d,%d] para la otra parte del barco:",colusu,filusu-1,colusu+1,filusu,colusu,filusu+1);//
-			scanf("%d,%d",&colusu,&filusu);
-			matriz[filusu-1][colusu-1]=verdadero;
-			return 0;
-		}
-		if(filusu==10 && colusu==1)
-		{
-			printf("Puede elegir [%d,%d] o [%d,%d] para la otra parte del barco:",colusu+1,filusu,colusu,filusu-1);//
-			scanf("%d,%d",&colusu,&filusu);
-			matriz[filusu-1][colusu-1]=verdadero;
-			return 0;
-		}
-			if(filusu==10 && (colusu==2 || colusu==3 || colusu==4 || colusu==5 || colusu==6 || colusu==7 || colusu==8 || colusu==9))	
-		{
-				
-			printf("Puede elegir [%d,%d] o [%d,%d] o [%d,%d] para la otra parte del barco:",colusu+1,filusu,colusu-1,filusu,colusu,filusu-1);//
-			scanf("%d,%d",&colusu,&filusu);
-			matriz[filusu-1][colusu-1]=verdadero;
-			return 0;
-		}
-		if(filusu==10 && colusu==10)
-		{
-			printf("Puede elegir [%d,%d] o [%d,%d] para la otra parte del barco:",colusu-1,filusu,colusu,filusu-1);//
-			scanf("%d,%d",&colusu,&filusu);
-			matriz[filusu-1][colusu-1]=verdadero;
-			return 0;
-		}
-		if((filusu==2 || filusu==3 || filusu==4 || filusu==5 || filusu==6 || filusu==7 || filusu==8 || filusu==9) && colusu==10)
-		{
-				
-			printf("Puede elegir [%d,%d] o [%d,%d] o [%d,%d] para la otra parte del barco:",colusu,filusu-1,colusu-1,filusu,colusu,filusu+1);//
-			scanf("%d,%d",&colusu,&filusu);
-			matriz[filusu-1][colusu-1]=verdadero;
-			return 0;
-		}
-		if((filusu==2 || filusu==3 || filusu==4 || filusu==5 || filusu==6 || filusu==7 || filusu==8 || filusu==9)&&(colusu==2 || colusu==3 || colusu==4 || colusu==5 || colusu==6 || colusu==7 || colusu==8 || colusu==9))
-		{
-			printf("Puede elegir [%d,%d] o [%d,%d] o [%d,%d] o [%d,%d]:",colusu+1,filusu,colusu-1,filusu,colusu,filusu+1,colusu,filusu-1);
-			scanf("%d,%d",&colusu,&filusu);
-			matriz[filusu-1][colusu-1]=verdadero;
-			return 0;
-		}
+			tablero_usuario(matriz);
+		}	
 }
-
-
-
-
-
